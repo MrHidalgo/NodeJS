@@ -1,5 +1,6 @@
 #FOLDER
 .idea/*
+node_modules/*
 
 #FILE
 *.iml
