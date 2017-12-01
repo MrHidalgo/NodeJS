@@ -1,6 +1,7 @@
 #FOLDER
 .idea/*
-node_modules/*
+SimpleChat/node_modules/*
+
 
 #FILE
 *.iml
