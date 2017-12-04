@@ -3,6 +3,7 @@ const http = require("http"),
 	path = require("path"),
 	mime = require("mime");
 
+const chatServer = require("./lib/chat_server");
 
 let cache = {};
 
@@ -111,3 +112,9 @@ let server = http.createServer((request, response) => {
 server.listen(3000, () => {
 	console.log("Server listener port 3000.");
 });
+
+
+/**
+ * @description Run Socket.IO-server together with HTTP-server
+ */
+chatServer.listen(server);
