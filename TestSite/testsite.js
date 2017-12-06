@@ -2,6 +2,9 @@ const express = require('express'),
 	handlebars = require('express-handlebars').create({
 		defaultLayout: 'main'
 	});
+
+const fortune = require('./lib/fortune');
+
 const app = express();
 
 
@@ -16,16 +19,6 @@ app.set('port', process.env.PORT || 3000);
  */
 app.use(express.static(__dirname + '/public'));
 
-
-/* Some test */
-// let fortunes = [
-// 	"Some fortunes 0",
-// 	"Some fortunes 1",
-// 	"Some fortunes 2",
-// 	"Some fortunes 3",
-// 	"Some fortunes 4",
-// 	"Some fortunes 5"
-// ];
 
 /**
  * Home page
@@ -42,13 +35,9 @@ app.get('/about', (request, response) => {
 	// response.type('text/plain');
 	// response.send("About site");
 
-	// let randomFortune = Math.floor(Math.random() * fortunes.length);
-
-    // response.render('about', {
-     //    fortune: fortunes[randomFortune]
-	// });
-
-    response.render('about');
+    response.render('about', {
+        fortune: fortune.getFortune()
+	});
 });
 
 
