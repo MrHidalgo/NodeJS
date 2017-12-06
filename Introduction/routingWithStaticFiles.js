@@ -19,7 +19,7 @@ hadError = (response, path) => {
  * @param contentType
  * @param data
  */
-hadDone = (response, contentType, data) => {
+completeData = (response, contentType, data) => {
 	response.writeHead(200, {
 		"Content-type": contentType
 	});
@@ -38,7 +38,7 @@ serveStaticFile = (response, path, contentType) => {
 			hadError(response, path);
 		}
 		
-		hadDone(response, contentType, data);
+		completeData(response, contentType, data);
 	});
 };
 
