@@ -1,7 +1,7 @@
 #FOLDER
 .idea/*
+TestSite/node_modules/*
 SimpleChat/node_modules/*
-
 
 #FILE
 *.iml
