@@ -45,15 +45,16 @@ app.get('/about', (request, response) => {
  * User page 404
  */
 app.use((request, response) => {
-	// response.type('text/plain');
-	response.status(404);
-	// response.send('404 - Not Found');
+    // response.type('text/plain');
+    response.status(404);
+    // response.send('404 - Not Found');
     response.render('404');
 });
 /**
  * User page 500
  */
-app.use((request, response) => {
+app.use((err, request, response, next) => {
+    console.error(err.stack);
 	// response.type('text/plain');
 	response.status(500);
 	// response.send('500 - Server Error');
