@@ -6,12 +6,12 @@ const http = require('http'),
  * @param response
  * @param path
  */
-function hadError(response, path) {
+hadError = (response, path) => {
 	response.writeHead(404, {
 		"Content-type" : "text/plain"
 	});
 	response.end(path)
-}
+};
 
 /**
  *
@@ -19,12 +19,12 @@ function hadError(response, path) {
  * @param contentType
  * @param data
  */
-function hadDone(response, contentType, data) {
+hadDone = (response, contentType, data) => {
 	response.writeHead(200, {
 		"Content-type": contentType
 	});
 	response.end(data);
-}
+};
 
 /**
  *
@@ -32,7 +32,7 @@ function hadDone(response, contentType, data) {
  * @param path
  * @param contentType
  */
-function serveStaticFile (response, path, contentType) {
+serveStaticFile = (response, path, contentType) => {
 	fs.readFile(__dirname + path, function (err, data) {
 		if(err) {
 			hadError(response, path);
@@ -40,12 +40,12 @@ function serveStaticFile (response, path, contentType) {
 		
 		hadDone(response, contentType, data);
 	});
-}
+};
 
 /**
  *
  */
-http.createServer(function (request, response) {
+http.createServer((request, response) => {
 	
 	let path = request.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase();
 	
