@@ -16,17 +16,29 @@ function hadError(response, path) {
 /**
  *
  * @param response
+ * @param contentType
+ * @param data
+ */
+function hadDone(response, contentType, data) {
+	response.writeHead(200, {
+		"Content-type": contentType
+	});
+	response.end(data);
+}
+
+/**
+ *
+ * @param response
  * @param path
  * @param contentType
  */
 function serveStaticFile (response, path, contentType) {
 	fs.readFile(__dirname + path, function (err, data) {
-		if(err) hadError(response, path);
+		if(err) {
+			hadError(response, path);
+		}
 		
-		response.writeHead(200, {
-			"Content-type" : contentType
-		});
-		response.end(data);
+		hadDone(response, contentType, data);
 	});
 }
 
