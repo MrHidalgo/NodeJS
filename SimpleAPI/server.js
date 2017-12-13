@@ -13,14 +13,15 @@ const express = require('express'),
 const getData = require('./lib/appGET'),
     getDataId = require('./lib/appGET_id'),
     postData = require('./lib/appPOST'),
-    deleteData = require('./lib/appDELETE'),
-    putData = require('./lib/appPUT');
+    putData = require('./lib/appPUT'),
+    deleteData = require('./lib/appDELETE');
 
 /**
  * Create json parser for data and express JS application
  */
 const app = express(),
     jsonParser = bodyParser.json();
+
 
 /**
  * Set server port
@@ -34,11 +35,29 @@ app.use(express.static(__dirname + '/public'));
 
 
 /**
- * Call API method
+ * Get data list
  */
 getData.GetData(app, fs, './data/user.json');
+
+/**
+ * Get user to the edit
+ */
 getDataId.GetDataId(app, fs, './data/user.json');
+
+/**
+ * Send data from JSON
+ */
 postData.PostData(app, fs, jsonParser, './data/user.json');
+
+/**
+ * Update data from JSON
+ */
+putData.PutData(app, fs, jsonParser, './data/user.json');
+
+/**
+ * Delete data from JSON
+ */
+deleteData.DeleteData(app, fs, './data/user.json');
 
 
 /**

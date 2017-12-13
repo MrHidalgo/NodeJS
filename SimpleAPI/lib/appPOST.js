@@ -1,3 +1,11 @@
+/**
+ *
+ * @param app
+ * @param fs
+ * @param bodyParser
+ * @param dataPath
+ * @constructor
+ */
 exports.PostData = (app, fs, bodyParser, dataPath) => {
 
     app.post('/api/users/', bodyParser, (req, res) => {
@@ -16,52 +24,24 @@ exports.PostData = (app, fs, bodyParser, dataPath) => {
         fs.readFile(dataPath, (err, data) => {
             if (err) throw err;
 
-            let dataJson = JSON.parse(data);
+            let oldDataJson = JSON.parse(data);
 
-            const MAX_ID = Math.max.apply(Math, dataJson.map((item) => {
+            const MAX_ID = Math.max.apply(Math, oldDataJson.map((item) => {
                 return item.id;
             }));
 
             user.id = MAX_ID + 1;
-            dataJson.push(user);
 
-            let newData = JSON.parse(data);
+            oldDataJson.push(user);
 
-            fs.writeFile(dataPath, newData, (err) => {
-               if (err) throw err;
+            let newDataJson = JSON.stringify(oldDataJson);
 
-               // res.end(data);
+            fs.writeFile(dataPath, newDataJson, (err) => {
+                if (err) throw err;
             });
+
+            res.send(user);
         });
     });
+
 };
-//
-//
-// exports.postData = app.post('/api/users/', jsonParser, (req, res) => {
-//     if (!req.body) {
-//         res.sendStatus(400);
-//     }
-//
-//     const userName = req.body.name,
-//         userAge = req.body.age;
-//
-//     const user = {
-//         name: userName,
-//         age: userAge
-//     };
-//
-//     let oldData = fs.readFile(jsonData, 'utf9'),
-//         users = JSON.parse(oldData);
-//
-//     const id = Math.max.apply(Math, users.map((item) => {
-//         return item.id;
-//     }));
-//
-//     user.id = id + 1;
-//     users.push(user);
-//
-//     let newData = JSON.parse(users);
-//
-//     fs.writeFile(jsonData, newData);
-//     res.end(user);
-// });

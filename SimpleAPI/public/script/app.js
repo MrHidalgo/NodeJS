@@ -67,7 +67,7 @@ function GetUser(id) {
  */
 function CreateUser(userName, userAge) {
     $.ajax({
-        url: "api/users",
+        url: "/api/users/",
         contentType: "application/json",
         method: "POST",
         data: JSON.stringify({
@@ -75,9 +75,7 @@ function CreateUser(userName, userAge) {
             age: userAge
         }),
         success: (user) => {
-
             reset();
-
             $("table tbody").append(row(user));
         }
     })
@@ -92,7 +90,7 @@ function CreateUser(userName, userAge) {
  */
 function EditUser(userId, userName, userAge) {
     $.ajax({
-        url: "api/users",
+        url: "/api/users/",
         contentType: "application/json",
         method: "PUT",
         data: JSON.stringify({
@@ -128,11 +126,9 @@ function DeleteUser(id) {
         contentType: "application/json",
         method: "DELETE",
         success: (user) => {
-            console.log(user);
-
             $("tr[data-rowid='" + user.id + "']").remove();
         }
-    })
+    });
 }
 
 /**

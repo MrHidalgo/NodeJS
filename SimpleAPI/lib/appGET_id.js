@@ -1,3 +1,10 @@
+/**
+ *
+ * @param app
+ * @param fs
+ * @param dataPath
+ * @constructor
+ */
 exports.GetDataId =  (app, fs, dataPath) => {
 
     app.get('/api/users/:id', (req, res) => {
