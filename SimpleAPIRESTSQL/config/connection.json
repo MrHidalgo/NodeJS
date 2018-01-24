@@ -1,0 +1,11 @@
+{
+  "connection":{
+    "server"  : "ec-ticket.database.windows.net",
+    "userName": "<<user name>>",
+    "password": "KievDev12345678",
+    "options": {
+      "encrypt": true,
+      "database": "ticketflow_dev"
+    }
+  }
+}
