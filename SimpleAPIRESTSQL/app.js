@@ -7,13 +7,13 @@ const express = require('express'),
 const app = express();
 
 const config = {
-    userName: 'kievdevlogin',
-    password: 'KievDev12345678',
-    server: 'ec-ticket.database.windows.net',
+    userName: '',
+    password: '',
+    server: '',
 
     // If you're on Windows Azure, you will need this:
     options: {
-        database: 'ticketflow_dev',
+        database: '',
         encrypt: true,
     }
 };
